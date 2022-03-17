@@ -1,10 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
-
+import {BrowserRouter as Router ,Routes ,Route} from "react-router-dom"
+import Home from "./page/Home";
+import Items from "./page/Items"
 function App() {
   return (
     <div className="App">
-     hi
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home/>}/>
+        <Route path="/items" element={<Items/>}/>
+      </Routes>
+    </Router>
     </div>
   );
 }

@@ -20,7 +20,10 @@ const Home = () => {
   <DefaultLayout>
       <Row gutter={20}>
         {items.map((item)=>{
-          return <Col xs={24} sm={12} md={8} lg={6}><Item item={item} key={item._id}/></Col>
+          return <Col xs={24} sm={12} md={8} lg={6} key={item._id}>
+              <Item item={item}/>
+          </Col>
+
         })}
       </Row>
   </DefaultLayout>

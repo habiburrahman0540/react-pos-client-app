@@ -1,7 +1,6 @@
 import React from 'react'
 import Card from "./UI/Card"
 import "../resources/item.css"
-import { Button } from 'antd'
 const Item = ({item}) => {
   return (
     <Card>

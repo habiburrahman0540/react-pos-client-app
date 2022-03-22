@@ -1,5 +1,5 @@
-import React from 'react';
-import "./DefaultLayout.css"
+import React,{useState} from 'react';
+import "../resources/DefaultLayout.css"
 import { Layout, Menu } from 'antd';
 import {HomeOutlined ,
   CopyOutlined,
@@ -7,27 +7,21 @@ import {HomeOutlined ,
   MenuFoldOutlined,
   UserOutlined,
   LoginOutlined,
-  UploadOutlined,
   UnorderedListOutlined
 } from '@ant-design/icons';
 import { Link } from 'react-router-dom';
 
 const { Header, Sider, Content,Footer } = Layout;
 
-class DefaultLayout extends React.Component {
-  state = {
-    collapsed: false,
-  };
+const DefaultLayout =(props)=> {
+  const [collapsed,setCollapsed] =useState(false)
 
-  toggle = () => {
-    this.setState({
-      collapsed: !this.state.collapsed,
-    });
+  const toggle = () => {
+    setCollapsed(!collapsed)
   };
-  render() {
     return (
       <Layout>
-        <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
+        <Sider trigger={null} collapsible collapsed={collapsed}>
           <div className="logo"><h3>POS Application</h3></div>
           <Menu theme="dark" mode="inline" defaultSelectedKeys={window.location.pathname}>
             <Menu.Item key='/' icon={<HomeOutlined />}>
@@ -49,9 +43,9 @@ class DefaultLayout extends React.Component {
         </Sider>
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: 0 }}>
-            {React.createElement(this.state.collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
+            {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
               className: 'trigger',
-              onClick: this.toggle,
+              onClick: toggle,
             })}
           </Header>
           <Content
@@ -62,12 +56,12 @@ class DefaultLayout extends React.Component {
               
             }}
           >
-           {this.props.children}
+           {props.children}
           </Content>
           <Footer style={{ textAlign: 'center' }}>©{new Date().getFullYear()} AllRight Reserved ,POS Application designed and Developed by Habibur Rahman</Footer>
         </Layout>
       </Layout>
     );
-  }
+  
 }
 export default DefaultLayout;

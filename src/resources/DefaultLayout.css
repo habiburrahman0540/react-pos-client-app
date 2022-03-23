@@ -26,6 +26,7 @@
   .ant-layout-header{
     display: flex;
     align-items: center;
+    justify-content: space-between;
   }
   .ant-layout-sider-children{
       height: 95vh !important;

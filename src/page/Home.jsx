@@ -1,25 +1,22 @@
 import { Col, Row } from 'antd';
-import React,{useEffect,useState} from 'react'
+import React,{useEffect} from 'react'
 import DefaultLayout from '../component/DefaultLayout'
-import axios from "axios"
 import Item from '../component/Item';
-
+import {useSelector,useDispatch} from "react-redux"
+import {ProductListActions} from "../redux/actions/ProductAction"
 const Home = () => {
-  const [items,setItems] = useState([]);
-  const getItems =()=>{
-    axios.get("/api/items").then(res=>{
-      setItems(res.data)
-    }).catch(error=>{
-      console.log(error)
-    })
-  }
+  const ProductList = useSelector(state=>state.productList);
+  const {loading,products,error} = ProductList;
+const dispatch = useDispatch();
   useEffect(()=>{
-    getItems()
-  },[])
-  return (
+    dispatch(ProductListActions())
+ 
+  },[dispatch])
+  return loading ? <div>Loading....</div>:
+  error?<div>{error}</div>: (
   <DefaultLayout>
       <Row gutter={20}>
-        {items.map((item)=>{
+        {products.map((item)=>{
           return <Col xs={24} sm={12} md={8} lg={6} key={item._id}>
               <Item item={item}/>
           </Col>

@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd';
+import { Col, Row,Spin } from 'antd';
 import React,{useEffect} from 'react'
 import DefaultLayout from '../component/DefaultLayout'
 import Item from '../component/Item';
@@ -12,19 +12,20 @@ const dispatch = useDispatch();
     dispatch(ProductListActions())
  
   },[dispatch])
-  return loading ? <div>Loading....</div>:
-  error?<div>{error}</div>: (
-  <DefaultLayout>
-      <Row gutter={20}>
-        {products.map((item)=>{
-          return <Col xs={24} sm={12} md={8} lg={6} key={item._id}>
-              <Item item={item}/>
-          </Col>
+  return <DefaultLayout>
+  {loading ? <div className='spinner'>
+  <Spin size='large'  />
+</div> : error ? <div>{error}</div> :(
+    <Row gutter={20}>
+      {products.map((item)=>{
+        return <Col key={item._id} xs={24} sm={12} md={8} lg={6}>
+            <Item item={item} />
+        </Col>
 
-        })}
-      </Row>
-  </DefaultLayout>
-  )
+      })}
+    </Row>)}
+</DefaultLayout>
 }
+
 
 export default Home;

@@ -63,3 +63,44 @@
     margin: 10px;
     border-radius: 5px;
 }
+.shopping_cart{
+  cursor: pointer;
+}
+.count_shopping_cart {
+  position: absolute;
+  top: 2px;
+  right: 33px;
+  color: #fff;
+  font-size: 16px;
+}
+.shopping_cart_count{
+  position: relative;
+  z-index: 1;
+}
+.shopping_cart_count:after {
+  position: absolute;
+  content: "";
+  width: 20px;
+  height: 20px;
+  top: 2px;
+  left: -6px;
+  background-color: #006E7A;
+  z-index: -1;
+  border-radius: 50%;
+}
+.shopping_cart_icon{
+  position: relative;
+  content: "";
+  width: 30px;
+  height: 30px;
+  
+}
+.spinner{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50,-50%);
+}
+.ant-spin-lg .ant-spin-dot {
+  font-size: 50px;
+}

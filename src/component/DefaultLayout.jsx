@@ -1,6 +1,8 @@
-import React,{useState} from 'react';
+import React,{useEffect, useState} from 'react';
 import "../resources/DefaultLayout.css"
 import { Layout, Menu ,Badge} from 'antd';
+import {useSelector} from "react-redux"
+import {useNavigate} from "react-router-dom"
 import {HomeOutlined ,
   CopyOutlined,
   MenuUnfoldOutlined,
@@ -16,10 +18,14 @@ const { Header, Sider, Content,Footer } = Layout;
 
 const DefaultLayout =(props)=> {
   const [collapsed,setCollapsed] =useState(false)
-
+const {cartItems} = useSelector(state=>state.CartItemsReducer)
   const toggle = () => {
     setCollapsed(!collapsed)
   };
+  useEffect(()=>{
+    localStorage.setItem('cartItems',JSON.stringify(cartItems))
+  },[cartItems])
+  const navigate = useNavigate();
     return (
       <Layout>
         <Sider trigger={null} collapsible collapsed={collapsed}>
@@ -48,11 +54,11 @@ const DefaultLayout =(props)=> {
               className: 'trigger',
               onClick: toggle,
             })}
-            <div className="shopping_cart">
-              
-                  <Badge count={1} style={{ color: '#fff',backgroundColor:'#1E9AA8' }}>
-                     <ShoppingCartOutlined />
-                </Badge>
+            <div className="shopping_cart" onClick={()=>navigate('/cart')}>
+                    <div className="count_shopping_cart">
+                        <span className='shopping_cart_count'>{cartItems.length}</span>
+                    </div>
+                     <ShoppingCartOutlined className="shopping_cart_icon"/>
             </div>
           </Header>
           <Content

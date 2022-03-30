@@ -31,3 +31,38 @@
     outline: 0 !important;
     box-shadow: none !important;
 }
+input{
+    border: 1px solid #198692 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+input:focus{
+    box-shadow: none !important;
+    outline: none !important;
+}
+.ant-select-selector{
+    border: 1px solid #198692 !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+.ant-modal-close::before {
+    position: absolute;
+    content: "";
+    background-color: #198692;
+    width: 25px;
+    height: 25px;
+    top: 19px;
+    left: 15px;
+    border-radius: 2px;
+    z-index: -1;
+}
+.ant-modal-close{
+    color: #fff;
+}
+.ant-modal-close:hover{
+    color: #fff;
+}
+.ant-modal-content{
+    border: 15px solid #10555C;
+    border-radius: 10px;
+}
